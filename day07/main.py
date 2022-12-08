@@ -1,3 +1,5 @@
+from collections import defaultdict
+
 def input(): 
     with open("./input.txt") as fin: 
         lines = fin.read().split('\n')
@@ -9,7 +11,7 @@ def get_path(path):
 
 def solution(cmds): 
     path = []
-    dirs = {}
+    dirs = defaultdict(int)
 
     for cmd in cmds: 
         if 'cd' in cmd: 
@@ -26,7 +28,7 @@ def solution(cmds):
             p = path.copy()
             while len(p) > 0: 
                 _dir = get_path(p)
-                size = dirs.get(_dir, 0)
+                size = dirs[_dir]
                 dirs[_dir] = size + int(cmd[0])
                 p.pop()
 
